@@ -2,7 +2,7 @@ replicaCount: 3
 image:
   repository: eugustavo/nlw-journey-api
   pullPolicy: IfNotPresent
-  tag: '4877e37'
+  tag: cdbdf9e
   containerPort: 8080
 imagePullSecrets: []
 nameOverride: ''
