@@ -7,6 +7,7 @@ on:
 
 jobs:
   build-and-push:
+    if: ${{ !contains(github.event.head_commit.message, 'Update image tag in values helm') }}
     name: Build and Push Docker Image
     runs-on: ubuntu-latest
 
@@ -50,6 +51,6 @@ jobs:
         propertyPath: 'image.tag'
         value: ${{steps.generate_sha.outputs.sha}}
         commitChange: true
-        message: 'New: Update image tag in values helm'
+        message: '[skip-ci] Update image tag in values helm'
         
 
