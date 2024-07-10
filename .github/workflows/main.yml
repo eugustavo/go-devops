@@ -1,4 +1,4 @@
-name: CI
+name: CI-CD
 
 on:
   push:
@@ -39,3 +39,17 @@ jobs:
         tags: |
           eugustavo/nlw-journey-api:${{steps.generate_sha.outputs.sha}}
           eugustavo/nlw-journey-api:latest
+
+    - name: Update image helm
+      uses: fjogeleit/yaml-update-action@main
+      with:
+        branch: release
+        targetBranch: main
+        createPR: true
+        valueFile: 'k8s-helm/values.yaml'
+        propertyPath: 'image.tag'
+        value: ${{steps.generate_sha.outputs.sha}}
+        commitChange: true
+        message: 'New: Update image tag in values helm'
+        
+
